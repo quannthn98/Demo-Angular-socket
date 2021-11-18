@@ -1,0 +1,49 @@
+<table class="table">
+  <tr>
+    <th>Id</th>
+    <th> Name</th>
+    <th>Quantity</th>
+    <th>Image</th>
+    <th>Manufacturer</th>
+    <th>Category</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let p of products">
+    <td>{{p.id}}</td>
+    <td><a routerLink="/products/detail/{{p.id}}">{{p.name}}</a></td>
+    <td>{{p.quantity}}</td>
+    <td>{{p.image}}</td>
+    <td>{{p.manufacturer}}</td>
+    <td>{{p.category.name}}</td>
+    <td>
+      <button><a routerLink="/products/edit/{{p.id}}">Edit</a></button>
+      <button (click)="drawConfirmDeleteButton(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+    </td>
+  </tr>
+</table>
+<button><a routerLink="/products/create">Create</a></button>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <div id="confirmButton">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="deleteProduct()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
