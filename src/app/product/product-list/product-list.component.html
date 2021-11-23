@@ -1,13 +1,18 @@
-<table class="table">
+<button (click)="logout()">Logout</button>
+<button><a routerLink="/login">Login</a></button>
+<table class="table table-striped">
+  <thead>
   <tr>
     <th>Id</th>
-    <th> Name</th>
+    <th>Name</th>
     <th>Quantity</th>
     <th>Image</th>
     <th>Manufacturer</th>
     <th>Category</th>
     <th>Action</th>
   </tr>
+  </thead>
+  <tbody>
   <tr *ngFor="let p of products">
     <td>{{p.id}}</td>
     <td><a routerLink="/products/detail/{{p.id}}">{{p.name}}</a></td>
@@ -17,9 +22,13 @@
     <td>{{p.category.name}}</td>
     <td>
       <button><a routerLink="/products/edit/{{p.id}}">Edit</a></button>
-      <button (click)="drawConfirmDeleteButton(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+      <button (click)="drawConfirmDeleteButton(p.id)" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete
+      </button>
     </td>
   </tr>
+  </tbody>
+
+
 </table>
 <button><a routerLink="/products/create">Create</a></button>
 <!-- Button trigger modal -->
@@ -47,3 +56,4 @@
     </div>
   </div>
 </div>
+

@@ -1,25 +1,26 @@
-<form #createProductForm = "ngForm" (ngSubmit)="submit(createProductForm)">
+<form [formGroup]="formCreate" (ngSubmit)="onSubmit()">
   <table>
     <tr>
       <td>Name</td>
-      <td><input type="text" ngModel name="name"></td>
+      <td><input type="text" formControlName="name"></td>
     </tr>
     <tr>
       <td>Quantity</td>
-      <td><input type="number" ngModel name="quantity"></td>
+      <td><input type="number" formControlName="quantity"></td>
     </tr>
     <tr>
       <td>Image</td>
-      <td><input type="text" ngModel name="image"></td>
+      <td><input type="file" name="image" (change)="onFileSelect($event)"></td>
     </tr>
     <tr>
       <td>Manufacturer</td>
-      <td><input type="text" ngModel name="manufacturer"></td>
+      <td><input type="text"  formControlName="manufacturer"></td>
     </tr>
     <tr>
       <td>Category</td>
-      <td><input type="number" ngModel name="category"></td>
+      <td><input type="number" formControlName="category"></td>
     </tr>
+
   </table>
   <button class="btc btn-primary">submit</button>
 </form>

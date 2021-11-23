@@ -1,32 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {ProductListComponent} from './product/product-list/product-list.component';
-import {ProductDetailComponent} from './product/product-detail/product-detail.component';
-import {ProductEditComponent} from './product/product-edit/product-edit.component';
-import {ProductDeleteComponent} from './product/product-delete/product-delete.component';
-import { ProductCreateComponent } from './product/product-create/product-create.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {LoginComponent} from './login/login/login.component';
+import {AuthGuard} from './helper/auth.guard';
 
 
 const routes: Routes = [
   {
     path: 'products',
-    component: ProductListComponent
+    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
   },
   {
-    path: 'products/detail/:id',
-    component: ProductDetailComponent
-  },
-  {
-    path: 'products/edit/:id',
-    component: ProductEditComponent
-  },
-  {
-    path: 'products/create',
-    component: ProductCreateComponent
-  },
-  {
-    path: 'products/delete/:id',
-    component: ProductDeleteComponent
+    path: 'login',
+    component: LoginComponent
   }
 ];
 
@@ -34,4 +19,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

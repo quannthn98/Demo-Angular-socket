@@ -2,6 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ProductService} from '../../service/product.service';
 import {Router} from '@angular/router';
 import {Product} from '../../interface/product';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -14,7 +15,8 @@ export class ProductListComponent implements OnInit, OnChanges {
   products: Product[] = [];
 
   constructor(private productService: ProductService,
-              private router: Router) {
+              private router: Router,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -26,6 +28,7 @@ export class ProductListComponent implements OnInit, OnChanges {
 
   getAll() {
     this.productService.getAll().subscribe(products => {
+      console.log('success');
       // @ts-ignore
       this.products = products.content;
     });
@@ -40,5 +43,10 @@ export class ProductListComponent implements OnInit, OnChanges {
       this.getAll();
     });
   }
+
+  logout() {
+    return this.authService.logout();
+  }
+
 
 }
