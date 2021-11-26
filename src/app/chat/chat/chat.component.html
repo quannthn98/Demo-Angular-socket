@@ -1,0 +1,11 @@
+<table>
+  <th>Messages</th>
+  <tr *ngFor="let message of messages"> {{message}}</tr>
+</table>
+
+<input type="text" [(ngModel)]="message">
+<button (click)="sendMessage()">Send</button>
+
+<h1>Enter your name to start chat room</h1>
+<input type="text" [(ngModel)]="name">
+<button (click)="join()">Join</button>
