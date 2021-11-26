@@ -1,0 +1,6 @@
+<h1>There are {{notifyService.notifies.length}} notifications</h1>
+<table>
+  <tr *ngFor="let notify of notifyService.notifies">
+    <td>{{notify.message}}</td>
+  </tr>
+</table>

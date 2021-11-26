@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SocketService} from '../../service/socket.service';
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
+import {NotifyService} from '../../service/notify.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,47 +12,32 @@ import Stomp from 'stompjs';
 export class ChatComponent implements OnInit {
   message: string;
   messages: string[] = [];
-  stompClient: any;
   name: string;
   notify: string;
-  members = 0;
 
-  constructor(private socketService: SocketService) {
-  }
-
-  connect() {
-    this.members++;
-    const ws = new SockJS('http://localhost:8080/ws');
-    this.stompClient = Stomp.over(ws);
-    this.stompClient.connect({}, frame => {
-      this.stompClient.subscribe('/topic/chat', data => {
-        console.log(data);
-        this.messages.push(data.body);
-      });
-    });
-  }
-
-  disconnect() {
-    if (this.stompClient != null) {
-      this.stompClient.disconnect();
-    }
+  constructor(private socketService: SocketService,
+              private notifyService: NotifyService) {
   }
 
   ngOnInit() {
-    this.connect();
+    this.socketService.connect();
+    this.notifyService.connect();
   }
 
-  sendMessage() {
+  async sendMessage() {
     if (this.name === undefined || this.name == null) {
       alert('please join chat room before send message');
     } else {
-      this.stompClient.send('/app/chat', {}, `${this.name}: ${this.message}`);
+      await this.socketService.sendMessage(`${this.name}: ${this.message}`);
+      await this.notifyService.sendNotify({
+        message: `new Message from ${this.name}`
+      });
     }
   }
 
   join() {
     this.notify = `${this.name} has joined the chat room`;
-    this.stompClient.send('/app/chat', {}, this.notify);
+    this.socketService.sendMessage(this.notify);
   }
 
 }

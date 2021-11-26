@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login/login.component';
 import {AuthGuard} from './helper/auth.guard';
 import {ChatComponent} from './chat/chat/chat.component';
+import {NotifyComponent} from './chat/notify/notify.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,12 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-  path: '',
+  path: 'chat',
     component: ChatComponent
+  },
+  {
+    path: 'notify',
+    component: NotifyComponent
   }
 ];
 

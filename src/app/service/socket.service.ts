@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {stringify} from '@angular/compiler/src/util';
+import {NotifyService} from './notify.service';
 
 const API_URL = `http://localhost:8080`;
 
@@ -13,7 +14,7 @@ export class SocketService {
   messages: string[] = [];
 
 
-  constructor() {
+  constructor(private notifyService: NotifyService) {
   }
 
   connect() {
@@ -33,7 +34,7 @@ export class SocketService {
     }
   }
 
-  sendMessage(message) {
+  async sendMessage(message) {
     this.stompClient.send('/app/chat', {}, message);
   }
 }

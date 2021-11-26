@@ -1,6 +1,6 @@
 <table>
   <th>Messages</th>
-  <tr *ngFor="let message of messages"> {{message}}</tr>
+  <tr *ngFor="let message of socketService.messages"> {{message}}</tr>
 </table>
 
 <input type="text" [(ngModel)]="message">
