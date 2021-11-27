@@ -9,13 +9,15 @@ import { LoginComponent } from './login/login/login.component';
 import {JwtInterceptor} from './helper/jwt-interceptor';
 import { ChatComponent } from './chat/chat/chat.component';
 import { NotifyComponent } from './chat/notify/notify.component';
+import { LocationComponent } from './location/location/location.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ChatComponent,
-    NotifyComponent
+    NotifyComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,

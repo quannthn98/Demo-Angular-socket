@@ -4,9 +4,14 @@ import {LoginComponent} from './login/login/login.component';
 import {AuthGuard} from './helper/auth.guard';
 import {ChatComponent} from './chat/chat/chat.component';
 import {NotifyComponent} from './chat/notify/notify.component';
+import {LocationComponent} from './location/location/location.component';
 
 
 const routes: Routes = [
+  {
+    path: 'location',
+    component: LocationComponent
+  },
   {
     path: 'products',
     loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
@@ -16,7 +21,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-  path: 'chat',
+    path: 'chat',
     component: ChatComponent
   },
   {
